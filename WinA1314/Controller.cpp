@@ -271,18 +271,14 @@ void CController::ProcessKey(const CInterceptor::InterceptionKeyStroke& srcKey)
 
 			bool bSrcKeyDown = ((srcKey.state & 0x1) == CInterceptor::INTERCEPTION_KEY_DOWN);
 			if(bSrcKeyDown) //Source key went DOWN
-			{
-				//bool bAllowAutoRepeat = (pos->second.flags & 0x1) == 1;		
-				//if(!bDstFnKeyPressed || bAllowAutoRepeat)
-				//{						
-					Globals::DebugMsg(_T("CController::ProcessKey(): * Mapped Fn key down *.\n"));
+			{					
+				Globals::DebugMsg(_T("CController::ProcessKey(): * Mapped Fn key down *.\n"));
 
-					//Set destination key state to down
-					pDstFnKey->state ^= CInterceptor::INTERCEPTION_KEY_UP;
-					Globals::DebugMsg(_T("CController::ProcessKey(): Write 0x%x,0x%x,0x%x.\n"), pDstFnKey->code, pDstFnKey->state, pDstFnKey->information);
+				//Set destination key state to down
+				pDstFnKey->state ^= CInterceptor::INTERCEPTION_KEY_UP;
+				Globals::DebugMsg(_T("CController::ProcessKey(): Write 0x%x,0x%x,0x%x.\n"), pDstFnKey->code, pDstFnKey->state, pDstFnKey->information);
 
-					m_KbF.Write(*pDstFnKey);
-				//}
+				m_KbF.Write(*pDstFnKey);
 
 				return;
 			}

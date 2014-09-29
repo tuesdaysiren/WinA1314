@@ -52,7 +52,6 @@ namespace Globals
 	static const int PID_APPLE_ALU_WIRELESS_2011_ISO = 0x0256;
 
 	static const int VID_APPLE = 0x5ac;
-	//static const int COL_APPLE_ALU_WIRELESS = 0x3;
 
 	//Global functions
 	//

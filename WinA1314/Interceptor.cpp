@@ -72,65 +72,6 @@ bool CInterceptor::Open()
 		return true;
 	}
 
-	/*
-	tregex ex(_T("VID_(\\w{4})&PID_(\\w{4})&Col(\\w{2})|VID&\\w{4}(\\w{4})_PID&(\\w{4})&Col(\\w{2})"), tregex::ECMAScript | tregex::icase );
-	for(int k = 0; k < 10; k++)
-	{
-		TCHAR szAlias[32];
-		_stprintf_s(szAlias, _T("\\\\.\\interception0%d"), k);
-		m_hDevice = CreateFile(szAlias, GENERIC_READ, 0, NULL, OPEN_EXISTING, 0, NULL);
-
-		wchar_t szHwId[1024];
-		ZeroMemory(szHwId, sizeof(szHwId));
-		DWORD dwOutSize = 0;
-		BOOL bRes = DeviceIoControl(m_hDevice, IOCTL_GET_HARDWARE_ID, NULL, 0, szHwId, sizeof(szHwId), &dwOutSize, NULL);
-		if(bRes)
-		{
-			Globals::DebugMsg(_T("CInterceptor::Open(): %s : %s\n"), szAlias, szHwId);
-
-			//Match regex against hardware id
-			tsmatch match;
-			tstring strHwId = tstring(szHwId);
-			regex_search(strHwId, match, ex);
-			int nVid = 0; int nPid = 0; int nCol = 0;
-
-			if(match.size() >= 6)
-			{
-				if(match[1].matched)
-				{
-					nVid = _tcstol(match[1].str().c_str(), NULL, 16);
-					nPid = _tcstol(match[2].str().c_str(), NULL, 16);
-					nCol = _tcstol(match[3].str().c_str(), NULL, 16);
-				}
-				else
-				{
-					nVid = _tcstol(match[4].str().c_str(), NULL, 16);
-					nPid = _tcstol(match[5].str().c_str(), NULL, 16);
-					nCol = _tcstol(match[6].str().c_str(), NULL, 16);
-				}
-			}
-
-			if(
-				nVid == Globals::VID_APPLE 
-				&& 
-				(
-					nPid == Globals::PID_APPLE_ALU_WIRELESS_2009_ANSI ||
-					nPid == Globals::PID_APPLE_ALU_WIRELESS_2009_ISO  ||
-					nPid == Globals::PID_APPLE_ALU_WIRELESS_2009_JIS  ||
-					nPid == Globals::PID_APPLE_ALU_WIRELESS_2011_ANSI ||
-					nPid == Globals::PID_APPLE_ALU_WIRELESS_2011_ISO)
-				)
-			{
-				Globals::DebugMsg(_T("CInterceptor::Open(): TLC 01 interface matched: %s : %s\n"), szAlias, szHwId);
-				break;
-			}
-		}
-
-		CloseHandle(m_hDevice);
-		m_hDevice = NULL;
-	}
-	*/	
-
 	for(int k = 0; k < 10; k++)
 	{
 		TCHAR szAlias[32];
